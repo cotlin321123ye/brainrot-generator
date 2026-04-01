@@ -156,7 +156,7 @@ textarea {
     border-color: #5a9eff;
 }
 
-/* ЧЕКБОКСЫ - ПОЛНОСТЬЮ СИНИЕ */
+/* ЧЕКБОКСЫ */
 .checkbox-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
@@ -186,7 +186,7 @@ textarea {
     transform: translateX(4px);
 }
 
-/* Кастомный стиль для чекбоксов */
+/* Кастомный чекбокс */
 .checkbox-item input {
     width: 18px;
     height: 18px;
@@ -200,6 +200,8 @@ textarea {
     align-items: center;
     justify-content: center;
     transition: all 0.2s;
+    margin: 0;
+    flex-shrink: 0;
 }
 
 .checkbox-item input:checked {
@@ -222,7 +224,7 @@ textarea {
     color: #e0f0ff;
 }
 
-/* РАДИО КНОПКИ - СИНИЕ */
+/* РАДИО КНОПКИ - МЕНЬШЕ И РОВНЫЕ */
 .radio-group {
     display: flex;
     gap: 24px;
@@ -239,16 +241,17 @@ textarea {
     padding: 8px 18px;
     border-radius: 40px;
     transition: 0.2s;
+    font-size: 14px;
 }
 
 .radio-label:hover {
     background: rgba(59, 130, 246, 0.4);
 }
 
-/* Кастомный стиль для радио-кнопок */
+/* Кастомные радио-кнопки (меньше и ровнее) */
 .radio-label input {
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
     cursor: pointer;
     appearance: none;
     -webkit-appearance: none;
@@ -259,12 +262,14 @@ textarea {
     align-items: center;
     justify-content: center;
     transition: all 0.2s;
+    margin: 0;
+    flex-shrink: 0;
 }
 
 .radio-label input:checked {
     background-color: #3b82f6;
     border-color: #3b82f6;
-    box-shadow: inset 0 0 0 3px rgba(20, 40, 70, 0.9);
+    box-shadow: inset 0 0 0 2px rgba(20, 40, 70, 0.9);
 }
 
 /* ОСНОВНЫЕ КНОПКИ */
