@@ -6,41 +6,45 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 100%);
-    color: #fff;
     min-height: 100vh;
     padding: 20px;
+    position: relative;
+    background: #0a0a2a;
+}
+
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://i.pinimg.com/1200x/66/29/02/662902ceb3ffcae10a826e3250ff7c4e.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 0;
+    opacity: 0.3;
 }
 
 .container {
+    position: relative;
+    z-index: 1;
     max-width: 1000px;
     margin: 0 auto;
-    background: rgba(0, 0, 0, 0.6);
-    border-radius: 20px;
+    background: rgba(10, 10, 30, 0.75);
+    backdrop-filter: blur(8px);
+    border-radius: 24px;
     padding: 30px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(100, 150, 255, 0.3);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
 }
 
 h1 {
     text-align: center;
     margin-bottom: 30px;
     font-size: 2em;
-    background: linear-gradient(135deg, #9b59b6, #ff6b6b);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.form-row {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 20px;
-}
-
-.form-row .form-group {
-    flex: 1;
-    margin-bottom: 0;
+    color: #5a9eff;
+    text-shadow: 0 0 10px rgba(90, 158, 255, 0.3);
 }
 
 .form-group {
@@ -51,17 +55,24 @@ h1 {
     display: block;
     margin-bottom: 8px;
     font-weight: bold;
-    color: #ddd;
+    color: #aaccff;
 }
 
 .form-group input, .form-group textarea, .search-input {
     width: 100%;
     padding: 12px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(20, 30, 50, 0.8);
+    border: 1px solid #3a6ea5;
     border-radius: 10px;
     color: #fff;
     font-size: 14px;
+    transition: all 0.2s;
+}
+
+.form-group input:focus, .form-group textarea:focus, .search-input:focus {
+    outline: none;
+    border-color: #5a9eff;
+    box-shadow: 0 0 5px rgba(90, 158, 255, 0.5);
 }
 
 .form-group textarea {
@@ -79,8 +90,8 @@ h1 {
     flex: 1;
     padding: 8px;
     font-size: 14px;
-    background: rgba(155, 89, 182, 0.3);
-    border: 1px solid #9b59b6;
+    background: rgba(42, 62, 102, 0.8);
+    border: 1px solid #3a6ea5;
     border-radius: 8px;
     color: white;
     cursor: pointer;
@@ -88,7 +99,8 @@ h1 {
 }
 
 .btn-small:hover {
-    background: rgba(155, 89, 182, 0.6);
+    background: rgba(90, 158, 255, 0.6);
+    border-color: #5a9eff;
 }
 
 .search-input {
@@ -101,9 +113,10 @@ h1 {
     gap: 8px;
     max-height: 300px;
     overflow-y: auto;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(10, 20, 35, 0.6);
     border-radius: 10px;
     padding: 10px;
+    border: 1px solid #2a4a7a;
 }
 
 .checkbox-item {
@@ -117,19 +130,20 @@ h1 {
 }
 
 .checkbox-item:hover {
-    background: rgba(155, 89, 182, 0.2);
+    background: rgba(90, 158, 255, 0.2);
 }
 
 .checkbox-item input {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
     cursor: pointer;
-    margin: 0;
+    accent-color: #5a9eff;
 }
 
 .checkbox-item span {
     font-size: 13px;
     cursor: pointer;
+    color: #ccddff;
 }
 
 .radio-group {
@@ -146,13 +160,14 @@ h1 {
     cursor: pointer;
     font-weight: normal;
     margin: 0;
+    color: #aaccff;
 }
 
 .radio-label input {
     width: 16px;
     height: 16px;
     cursor: pointer;
-    margin: 0;
+    accent-color: #5a9eff;
 }
 
 .buttons {
@@ -172,9 +187,10 @@ h1 {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #9b59b6, #ff6b6b);
+    background: linear-gradient(135deg, #2a5a9a, #1a3a6a);
     color: white;
     flex: 1;
+    border: 1px solid #5a9eff;
 }
 
 .btn-copy {
@@ -197,6 +213,7 @@ button:hover {
 
 #output h3 {
     margin-bottom: 15px;
+    color: #5a9eff;
 }
 
 #scriptOutput {
@@ -210,6 +227,54 @@ button:hover {
     white-space: pre-wrap;
     word-wrap: break-word;
     font-family: monospace;
+    color: #aaffaa;
+    border: 1px solid #2a6a2a;
+}
+
+.footer {
+    margin-top: 30px;
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(90, 158, 255, 0.3);
+}
+
+.discord-btn {
+    background: linear-gradient(135deg, #5865F2, #4752c4);
+    color: white;
+    padding: 12px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: 15px;
+}
+
+.discord-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(88, 101, 242, 0.5);
+}
+
+.credits {
+    font-size: 14px;
+    color: #88aaff;
+}
+
+.gradient-text {
+    font-weight: bold;
+    background: linear-gradient(90deg, #3a8eff, #1a4a9a, #5aaeff, #2a6aca);
+    background-size: 300% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradientMove 3s ease infinite;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% center; }
+    50% { background-position: 100% center; }
+    100% { background-position: 0% center; }
 }
 
 ::-webkit-scrollbar {
@@ -218,11 +283,11 @@ button:hover {
 }
 
 ::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(90, 158, 255, 0.1);
     border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #9b59b6;
+    background: #5a9eff;
     border-radius: 10px;
 }
