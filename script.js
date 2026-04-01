@@ -145,4 +145,52 @@ document.getElementById('discordBtn').addEventListener('click', () => {
     window.open('https://discord.gg/9A6x27c9k6', '_blank');
 });
 
+document.getElementById('autoacceptBtn').addEventListener('click', () => {
+    const autoacceptScript = `-- ========== AUTO ACCEPT + ANTI-AFK ==========
+-- Auto accept trades + anti AFK
+
+local player = game:GetService("Players").LocalPlayer
+local vim = game:GetService("VirtualInputManager")
+
+-- Auto accept trades
+task.spawn(function()
+    while true do
+        for _, btn in pairs(player.PlayerGui:GetDescendants()) do
+            if btn.Name == "Yes" and btn:IsA("ImageButton") then
+                pcall(function()
+                    for _, c in pairs(getconnections(btn.Activated)) do c:Fire() end
+                end)
+            end
+            if btn.Name == "ReadyButton" and btn:IsA("ImageButton") then
+                pcall(function()
+                    for _, c in pairs(getconnections(btn.Activated)) do c:Fire() end
+                end)
+            end
+        end
+        task.wait(0.5)
+    end
+end)
+
+-- Anti AFK (movement every 30 sec)
+task.spawn(function()
+    while true do
+        task.wait(30)
+        local char = player.Character
+        local hum = char and char:FindFirstChildOfClass("Humanoid")
+        if hum then
+            hum:ChangeState(Enum.HumanoidStateType.Jumping)
+            task.wait(0.3)
+            vim:SendKeyEvent(true, "W", false, game)
+            task.wait(0.5)
+            vim:SendKeyEvent(false, "W", false, game)
+        end
+    end
+end)
+
+print("Auto Accept + Anti-AFK loaded")`;
+
+    navigator.clipboard.writeText(autoacceptScript);
+    alert('Auto Accept + Anti-AFK script copied!');
+});
+
 populateBrainrotsList();
