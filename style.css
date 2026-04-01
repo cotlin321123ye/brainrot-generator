@@ -159,16 +159,15 @@ textarea {
 /* ЧЕКБОКСЫ — ГОРИЗОНТАЛЬНО (ГАЛОЧКА + ТЕКСТ) ОДИНАКОВОГО РАЗМЕРА */
 .checkbox-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, 100px);
-    gap: 12px;
-    max-height: 500px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 8px;
+    max-height: 340px;
     overflow-y: auto;
     background: rgba(0, 0, 0, 0.25);
     border-radius: 20px;
-    padding: 14px;
+    padding: 12px;
     margin-top: 12px;
     border: 1px solid rgba(90, 158, 255, 0.2);
-    justify-content: center;
 }
 
 .checkbox-item {
@@ -180,8 +179,7 @@ textarea {
     border-radius: 8px;
     transition: all 0.2s;
     background: rgba(30, 45, 70, 0.4);
-    width: 100px;
-    height: 100px;
+    min-height: 40px;
 }
 
 .checkbox-item:hover {
