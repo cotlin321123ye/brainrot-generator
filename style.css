@@ -156,7 +156,7 @@ textarea {
     border-color: #5a9eff;
 }
 
-/* ЧЕКБОКСЫ — ГОРИЗОНТАЛЬНО (ГАЛОЧКА + ТЕКСТ) */
+/* ЧЕКБОКСЫ */
 .checkbox-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -187,16 +187,16 @@ textarea {
     transform: translateX(4px);
 }
 
-/* БОКС ГАЛОЧКИ 13x13 + САМА ГАЛОЧКА */
+/* КВАДРАТИК ГАЛОЧКИ 10x10 */
 .checkbox-item input {
-    width: 13px;
-    height: 13px;
+    width: 10px;
+    height: 10px;
     cursor: pointer;
     appearance: none;
     -webkit-appearance: none;
     background-color: rgba(20, 40, 70, 0.9);
     border: 1px solid #3b82f6;
-    border-radius: 3px;
+    border-radius: 2px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -212,11 +212,11 @@ textarea {
 
 .checkbox-item input:checked::after {
     content: "✓";
-    font-size: 9px;
+    font-size: 7px;
     color: white;
     display: block;
     text-align: center;
-    line-height: 11px;
+    line-height: 8px;
 }
 
 .checkbox-item span {
@@ -251,10 +251,10 @@ textarea {
     background: rgba(59, 130, 246, 0.4);
 }
 
-/* БОКС КРУГА 13x13 + САМ КРУГ */
+/* КРУЖОК РАДИО-КНОПКИ 10x10 */
 .radio-label input {
-    width: 13px;
-    height: 13px;
+    width: 10px;
+    height: 10px;
     cursor: pointer;
     appearance: none;
     -webkit-appearance: none;
