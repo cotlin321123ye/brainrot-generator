@@ -1,25 +1,91 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, sans-serif;
     background: #0a0a1a;
     color: white;
     padding: 20px;
 }
+
 .container {
-    max-width: 600px;
+    max-width: 700px;
     margin: 0 auto;
     background: rgba(0,0,0,0.7);
     padding: 30px;
     border-radius: 20px;
 }
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
 input, select, textarea {
     width: 100%;
     padding: 10px;
-    margin: 10px 0;
     background: #1e1e2e;
     border: 1px solid #9b59b6;
     color: white;
     border-radius: 8px;
 }
+
+textarea {
+    height: 80px;
+    resize: vertical;
+}
+
+.select-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.select-buttons button {
+    flex: 1;
+    background: #2a2a3a;
+    padding: 8px;
+    font-size: 14px;
+}
+
+#brainrotsList {
+    max-height: 300px;
+    overflow-y: auto;
+    background: #1e1e2e;
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.checkbox-item:hover {
+    background: #2a2a3a;
+}
+
+.checkbox-item input {
+    width: auto;
+}
+
 button {
     background: #9b59b6;
     color: white;
@@ -29,9 +95,25 @@ button {
     cursor: pointer;
     margin-right: 10px;
 }
+
+button:hover {
+    opacity: 0.9;
+}
+
+#copyBtn {
+    background: #2ecc71;
+}
+
 pre {
     background: #1e1e2e;
     padding: 15px;
     border-radius: 8px;
     overflow-x: auto;
+    font-size: 12px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+#output {
+    margin-top: 20px;
 }
