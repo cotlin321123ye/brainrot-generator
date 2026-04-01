@@ -144,6 +144,10 @@ textarea {
     font-size: 13px;
     font-weight: 500;
     transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 .btn-secondary:hover {
@@ -204,7 +208,7 @@ textarea {
 }
 
 .radio-label {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 8px;
     cursor: pointer;
@@ -244,6 +248,10 @@ textarea {
     background: linear-gradient(135deg, #2a5a9a, #1a3a6a);
     color: white;
     border: 1px solid #5a9eff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 .btn-copy {
@@ -310,18 +318,48 @@ pre {
     transition: 0.2s;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
     box-shadow: 0 0 12px rgba(88, 101, 242, 0.4);
 }
 
 .discord-btn img {
-    width: 22px;
-    height: 22px;
+    width: 26px;
+    height: 26px;
 }
 
 .discord-btn:hover {
     transform: scale(1.03);
     box-shadow: 0 0 22px rgba(88, 101, 242, 0.7);
+}
+
+.autoaccept-btn {
+    background: linear-gradient(135deg, #8b5cf6, #3b82f6, #a855f7);
+    background-size: 200% auto;
+    color: white;
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 60px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(139, 92, 246, 0.4);
+    animation: gradientShift 2.5s ease infinite;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.autoaccept-btn:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.7);
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
 }
 
 .credits {
@@ -340,11 +378,6 @@ pre {
     background-clip: text;
     color: transparent;
     animation: gradientShift 2.2s ease infinite;
-}
-
-@keyframes gradientShift {
-    0% { background-position: 0% center; }
-    100% { background-position: 200% center; }
 }
 
 /* СКРОЛЛБАР */
@@ -376,32 +409,7 @@ pre {
         align-items: stretch;
         text-align: center;
     }
-    .discord-btn {
+    .discord-btn, .autoaccept-btn {
         justify-content: center;
     }
-}
-
-.autoaccept-btn {
-    background: linear-gradient(135deg, #8b5cf6, #3b82f6, #a855f7);
-    background-size: 200% auto;
-    color: white;
-    padding: 12px 28px;
-    font-size: 14px;
-    font-weight: bold;
-    border: none;
-    border-radius: 60px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 10px rgba(139, 92, 246, 0.4);
-    animation: gradientShift 2.5s ease infinite;
-}
-
-.autoaccept-btn:hover {
-    transform: scale(1.03);
-    box-shadow: 0 0 20px rgba(139, 92, 246, 0.7);
-}
-
-@keyframes gradientShift {
-    0% { background-position: 0% center; }
-    100% { background-position: 200% center; }
 }
