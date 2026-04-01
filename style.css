@@ -156,7 +156,7 @@ textarea {
     border-color: #5a9eff;
 }
 
-/* ЧЕКБОКСЫ */
+/* ЧЕКБОКСЫ — ГАЛОЧКИ */
 .checkbox-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
@@ -186,7 +186,7 @@ textarea {
     transform: translateX(4px);
 }
 
-/* Кастомный чекбокс */
+/* КАСТОМНАЯ ГАЛОЧКА (синяя) */
 .checkbox-item input {
     width: 18px;
     height: 18px;
@@ -224,7 +224,7 @@ textarea {
     color: #e0f0ff;
 }
 
-/* РАДИО КНОПКИ - МЕНЬШЕ И РОВНЫЕ */
+/* РАДИО КНОПКИ (КРУГИ) — СИНИЕ И МЕНЬШЕ */
 .radio-group {
     display: flex;
     gap: 24px;
@@ -248,10 +248,10 @@ textarea {
     background: rgba(59, 130, 246, 0.4);
 }
 
-/* Кастомные радио-кнопки (меньше и ровнее) */
+/* УМЕНЬШЕННЫЕ РАДИО-КРУГИ */
 .radio-label input {
-    width: 14px;
-    height: 14px;
+    width: 12px;
+    height: 12px;
     cursor: pointer;
     appearance: none;
     -webkit-appearance: none;
