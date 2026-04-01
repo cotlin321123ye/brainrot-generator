@@ -156,10 +156,10 @@ textarea {
     border-color: #5a9eff;
 }
 
-/* ЧЕКБОКСЫ — КВАДРАТНЫЕ ЯЧЕЙКИ */
+/* ЧЕКБОКСЫ — КВАДРАТНЫЕ ЯЧЕЙКИ ОДИНАКОВОГО РАЗМЕРА */
 .checkbox-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(95px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(100px, 100px));
     gap: 12px;
     max-height: 500px;
     overflow-y: auto;
@@ -168,21 +168,24 @@ textarea {
     padding: 14px;
     margin-top: 12px;
     border: 1px solid rgba(90, 158, 255, 0.2);
+    justify-content: center;
 }
 
 .checkbox-item {
-    aspect-ratio: 1 / 1;
+    width: 100px;
+    height: 100px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 10px;
+    padding: 8px;
     cursor: pointer;
     border-radius: 16px;
     transition: all 0.2s;
     background: rgba(30, 45, 70, 0.4);
     text-align: center;
+    overflow: hidden;
 }
 
 .checkbox-item:hover {
@@ -190,10 +193,10 @@ textarea {
     transform: translateY(-2px);
 }
 
-/* КАСТОМНАЯ ГАЛОЧКА — МАЛЕНЬКАЯ, РОВНАЯ */
+/* КАСТОМНАЯ ГАЛОЧКА */
 .checkbox-item input {
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
     cursor: pointer;
     appearance: none;
     -webkit-appearance: none;
@@ -215,22 +218,27 @@ textarea {
 
 .checkbox-item input:checked::after {
     content: "✓";
-    font-size: 12px;
+    font-size: 13px;
     color: white;
     display: block;
     text-align: center;
-    line-height: 16px;
+    line-height: 18px;
 }
 
 .checkbox-item span {
-    font-size: 11px;
+    font-size: 10px;
     color: #e0f0ff;
     word-break: break-word;
     max-width: 90%;
-    line-height: 1.3;
+    line-height: 1.2;
+    text-align: center;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
-/* РАДИО КНОПКИ — МАЛЕНЬКИЕ, ИДЕАЛЬНЫЕ КРУГИ */
+/* РАДИО КНОПКИ */
 .radio-group {
     display: flex;
     gap: 24px;
@@ -254,7 +262,6 @@ textarea {
     background: rgba(59, 130, 246, 0.4);
 }
 
-/* УМЕНЬШЕННЫЙ, РОВНЫЙ РАДИО-КРУГ */
 .radio-label input {
     width: 12px;
     height: 12px;
@@ -451,11 +458,15 @@ pre {
         font-size: 2.2rem;
     }
     .checkbox-grid {
-        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-        max-height: 400px;
+        grid-template-columns: repeat(auto-fill, minmax(80px, 80px));
+        gap: 8px;
+    }
+    .checkbox-item {
+        width: 80px;
+        height: 80px;
     }
     .checkbox-item span {
-        font-size: 9px;
+        font-size: 8px;
     }
     .footer {
         flex-direction: column;
