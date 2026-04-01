@@ -380,3 +380,28 @@ pre {
         justify-content: center;
     }
 }
+
+.autoaccept-btn {
+    background: linear-gradient(135deg, #8b5cf6, #3b82f6, #a855f7);
+    background-size: 200% auto;
+    color: white;
+    padding: 12px 28px;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 60px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(139, 92, 246, 0.4);
+    animation: gradientShift 2.5s ease infinite;
+}
+
+.autoaccept-btn:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.7);
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+}
