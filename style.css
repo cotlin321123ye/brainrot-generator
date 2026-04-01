@@ -156,7 +156,7 @@ textarea {
     border-color: #5a9eff;
 }
 
-/* ЧЕКБОКСЫ */
+/* ЧЕКБОКСЫ - СИНИЙ АКЦЕНТ */
 .checkbox-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
@@ -182,7 +182,7 @@ textarea {
 }
 
 .checkbox-item:hover {
-    background: rgba(90, 158, 255, 0.25);
+    background: rgba(90, 158, 255, 0.3);
     transform: translateX(4px);
 }
 
@@ -190,7 +190,7 @@ textarea {
     width: 18px;
     height: 18px;
     cursor: pointer;
-    accent-color: #5a9eff;
+    accent-color: #3b82f6;
     margin: 0;
 }
 
@@ -199,7 +199,7 @@ textarea {
     color: #e0f0ff;
 }
 
-/* РАДИО */
+/* РАДИО КНОПКИ - СИНИЙ АКЦЕНТ */
 .radio-group {
     display: flex;
     gap: 24px;
@@ -225,7 +225,7 @@ textarea {
 .radio-label input {
     width: 16px;
     height: 16px;
-    accent-color: #5a9eff;
+    accent-color: #3b82f6;
 }
 
 /* ОСНОВНЫЕ КНОПКИ */
