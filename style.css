@@ -133,8 +133,8 @@ textarea {
     flex: 1;
     background: rgba(50, 70, 100, 0.6);
     border: 1px solid #3a6ea5;
-    padding: 8px 12px;
-    border-radius: 30px;
+    padding: 10px 16px;
+    border-radius: 40px;
     color: white;
     cursor: pointer;
     font-size: 13px;
@@ -182,10 +182,13 @@ textarea {
     transform: translateX(4px);
 }
 
-/* СТИЛИ ДЛЯ КВАДРАТИКА ГАЛОЧКИ 10x10 */
+/* КВАДРАТНАЯ ГАЛОЧКА 12x12 (ПРИНУДИТЕЛЬНО КВАДРАТ) */
 .checkbox-item input[type="checkbox"] {
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
+    min-width: 12px;
+    max-width: 12px;
+    aspect-ratio: 1 / 1;
     cursor: pointer;
     appearance: none;
     -webkit-appearance: none;
@@ -198,6 +201,7 @@ textarea {
     transition: all 0.2s;
     margin: 0;
     flex-shrink: 0;
+    padding: 0;
 }
 
 .checkbox-item input[type="checkbox"]:checked {
@@ -207,11 +211,11 @@ textarea {
 
 .checkbox-item input[type="checkbox"]:checked::after {
     content: "✓";
-    font-size: 7px;
+    font-size: 8px;
     color: white;
     display: block;
     text-align: center;
-    line-height: 8px;
+    line-height: 10px;
 }
 
 .checkbox-item span {
@@ -245,10 +249,13 @@ textarea {
     background: rgba(59, 130, 246, 0.4);
 }
 
-/* СТИЛИ ДЛЯ КРУЖКА РАДИО-КНОПКИ 10x10 */
+/* КРУГЛАЯ РАДИО-КНОПКА 12x12 (ПРИНУДИТЕЛЬНО КРУГ) */
 .radio-label input[type="radio"] {
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
+    min-width: 12px;
+    max-width: 12px;
+    aspect-ratio: 1 / 1;
     cursor: pointer;
     appearance: none;
     -webkit-appearance: none;
@@ -261,6 +268,7 @@ textarea {
     transition: all 0.2s;
     margin: 0;
     flex-shrink: 0;
+    padding: 0;
 }
 
 .radio-label input[type="radio"]:checked {
@@ -278,11 +286,11 @@ textarea {
 
 .btn-primary, .btn-copy {
     flex: 1;
-    padding: 14px 20px;
+    padding: 12px 20px;
     font-size: 16px;
     font-weight: bold;
     border: none;
-    border-radius: 60px;
+    border-radius: 40px;
     cursor: pointer;
     transition: all 0.2s;
     background: linear-gradient(135deg, #2a5a9a, #1a3a6a);
@@ -300,9 +308,9 @@ textarea {
 }
 
 .btn-primary:hover, .btn-copy:hover {
-    transform: translateY(-3px);
+    transform: translateY(-2px);
     filter: brightness(1.05);
-    box-shadow: 0 8px 20px rgba(90, 158, 255, 0.4);
+    box-shadow: 0 5px 15px rgba(90, 158, 255, 0.3);
 }
 
 .output-box {
@@ -347,39 +355,39 @@ pre {
 .discord-btn {
     background: linear-gradient(135deg, #5865F2, #3b47b3);
     color: white;
-    padding: 12px 28px;
-    font-size: 15px;
+    padding: 10px 24px;
+    font-size: 14px;
     font-weight: bold;
     border: none;
-    border-radius: 60px;
+    border-radius: 40px;
     cursor: pointer;
     transition: 0.2s;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 8px;
     box-shadow: 0 0 12px rgba(88, 101, 242, 0.4);
 }
 
 .discord-btn img {
-    width: 26px;
-    height: 26px;
+    width: 22px;
+    height: 22px;
 }
 
 .discord-btn:hover {
-    transform: scale(1.03);
-    box-shadow: 0 0 22px rgba(88, 101, 242, 0.7);
+    transform: scale(1.02);
+    box-shadow: 0 0 18px rgba(88, 101, 242, 0.6);
 }
 
 .autoaccept-btn {
     background: linear-gradient(135deg, #8b5cf6, #3b82f6, #a855f7);
     background-size: 200% auto;
     color: white;
-    padding: 12px 24px;
-    font-size: 14px;
+    padding: 10px 20px;
+    font-size: 13px;
     font-weight: bold;
     border: none;
-    border-radius: 60px;
+    border-radius: 40px;
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 0 10px rgba(139, 92, 246, 0.4);
@@ -391,8 +399,8 @@ pre {
 }
 
 .autoaccept-btn:hover {
-    transform: scale(1.03);
-    box-shadow: 0 0 20px rgba(139, 92, 246, 0.7);
+    transform: scale(1.02);
+    box-shadow: 0 0 18px rgba(139, 92, 246, 0.6);
 }
 
 @keyframes gradientShift {
@@ -403,7 +411,7 @@ pre {
 .credits {
     font-size: 14px;
     background: rgba(0, 0, 0, 0.5);
-    padding: 8px 20px;
+    padding: 6px 18px;
     border-radius: 40px;
     backdrop-filter: blur(4px);
 }
@@ -443,6 +451,14 @@ pre {
     .checkbox-item span {
         font-size: 12px;
         white-space: normal;
+    }
+    .btn-primary, .btn-copy {
+        padding: 10px 16px;
+        font-size: 14px;
+    }
+    .discord-btn, .autoaccept-btn {
+        padding: 8px 16px;
+        font-size: 12px;
     }
     .footer {
         flex-direction: column;
