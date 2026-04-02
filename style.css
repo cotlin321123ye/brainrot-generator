@@ -9,6 +9,7 @@ body {
     min-height: 100vh;
     overflow-x: hidden;
     color: #fff;
+    background: #0a1a3a;
 }
 
 .bg-video {
