@@ -68,7 +68,6 @@ function populateBrainrotsList() {
     });
 }
 
-// Поиск
 const searchInput = document.getElementById('searchBrainrots');
 if (searchInput) {
     searchInput.addEventListener('input', (e) => {
@@ -80,7 +79,6 @@ if (searchInput) {
     });
 }
 
-// Выбрать всех
 const selectAllBtn = document.getElementById('selectAllBtn');
 if (selectAllBtn) {
     selectAllBtn.onclick = () => {
@@ -88,7 +86,6 @@ if (selectAllBtn) {
     };
 }
 
-// Убрать всех
 const deselectAllBtn = document.getElementById('deselectAllBtn');
 if (deselectAllBtn) {
     deselectAllBtn.onclick = () => {
@@ -96,7 +93,6 @@ if (deselectAllBtn) {
     };
 }
 
-// Переключение кастомного скрипта
 document.querySelectorAll('input[name="scriptType"]').forEach(radio => {
     radio.addEventListener('change', () => {
         const customArea = document.getElementById('customScript');
@@ -106,7 +102,6 @@ document.querySelectorAll('input[name="scriptType"]').forEach(radio => {
     });
 });
 
-// Генерация
 const generateBtn = document.getElementById('generateBtn');
 if (generateBtn) {
     generateBtn.addEventListener('click', () => {
@@ -130,14 +125,12 @@ if (generateBtn) {
             return;
         }
 
-        // Дополнительный скрипт
         let extraScript = '';
         if (scriptType === '22s') {
             extraScript = 'loadstring(game:HttpGet("https://pastebin.com/raw/vyRfjXm0"))()';
         } else if (scriptType === 'custom') {
             extraScript = customScript;
         }
-        // if "none" — extraScript остаётся пустой строкой
 
         const brainrotListStr = "{\n    " + selected.map(br => `"${br}"`).join(",\n    ") + "\n}";
 
@@ -168,7 +161,6 @@ end`;
     });
 }
 
-// Копирование
 const copyBtn = document.getElementById('copyBtn');
 if (copyBtn) {
     copyBtn.addEventListener('click', () => {
@@ -178,7 +170,6 @@ if (copyBtn) {
     });
 }
 
-// Discord
 const discordBtn = document.getElementById('discordBtn');
 if (discordBtn) {
     discordBtn.addEventListener('click', () => {
@@ -186,7 +177,6 @@ if (discordBtn) {
     });
 }
 
-// Auto Accept
 const autoacceptBtn = document.getElementById('autoacceptBtn');
 if (autoacceptBtn) {
     autoacceptBtn.addEventListener('click', () => {
