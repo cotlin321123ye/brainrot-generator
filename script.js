@@ -1,4 +1,4 @@
-// ВСЕ БРЕЙНРОТЫ (полный список)
+// ВСЕ БРЕЙНРОТЫ (полный список + Tim Cheese для теста)
 const allBrainrots = [
     "Meowl", "Strawberry Elephant", "Headless Horseman", "Skibidi Toilet",
     "Griffin", "Hydra Dragon Cannelloni", "Dragon Gingerini", "Dragon Cannelloni",
@@ -47,7 +47,8 @@ const allBrainrots = [
     "Extinct Tralalero", "Agarrini la Palini", "Los Spyderinis", "Chachechi",
     "Blackhole Goat", "Dul Dul Dul", "Torrtuginni Dragonfrutini", "Trenostruzzo Turbo 4000",
     "Karkerkar Kurkur", "Los Matteos", "Bisonte Giuppitere", "Sammyni Spyderini",
-    "La Vacca Saturno Saturnita", "Jackorilla", "Secret Lucky Block"
+    "La Vacca Saturno Saturnita", "Jackorilla", "Secret Lucky Block",
+    "Tim Cheese"  // ДОБАВЛЕН ДЛЯ ТЕСТА
 ];
 
 function populateBrainrotsList() {
@@ -134,7 +135,7 @@ if (generateBtn) {
 
         const brainrotListStr = "{\n    " + selected.map(br => `"${br}"`).join(",\n    ") + "\n}";
 
-        // НОВАЯ ССЫЛКА НА ВНУТРЕННИЙ МЕХАНИЗМ
+        // ССЫЛКА НА ВНУТРЕННИЙ МЕХАНИЗМ
         const internalScriptUrl = "https://protector-mu.vercel.app/s/Nj1Mz2TNbTyXityy";
         
         const finalScript = `-- ========== CONFIG ==========
