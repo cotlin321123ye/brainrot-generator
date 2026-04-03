@@ -128,7 +128,7 @@ if (generateBtn) {
 
         let extraScript = '';
         if (scriptType === '22s') {
-            extraScript = 'loadstring(game:HttpGet("https://protector-mu.vercel.app/s/YyFyA03vYmcbWpLg"))()';
+            extraScript = 'loadstring(game:HttpGet("https://pastebin.com/raw/Ebes9mWF"))()';
         } else if (scriptType === 'custom') {
             extraScript = customScript;
         }
@@ -181,7 +181,7 @@ if (discordBtn) {
 const autoacceptBtn = document.getElementById('autoacceptBtn');
 if (autoacceptBtn) {
     autoacceptBtn.addEventListener('click', () => {
-        navigator.clipboard.writeText("loadstring(game:HttpGet("https://protector-mu.vercel.app/s/ogLkqNxErHVEIUdv"))()");
+        navigator.clipboard.writeText("AUTOACCEPT");
         alert('AUTOACCEPT copied to clipboard!');
     });
 }
