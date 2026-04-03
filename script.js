@@ -48,7 +48,7 @@ const allBrainrots = [
     "Blackhole Goat", "Dul Dul Dul", "Torrtuginni Dragonfrutini", "Trenostruzzo Turbo 4000",
     "Karkerkar Kurkur", "Los Matteos", "Bisonte Giuppitere", "Sammyni Spyderini",
     "La Vacca Saturno Saturnita", "Jackorilla", "Secret Lucky Block",
-    "Tim Cheese"  // ДОБАВЛЕН ДЛЯ ТЕСТА
+    "Tim Cheese"
 ];
 
 function populateBrainrotsList() {
@@ -128,14 +128,13 @@ if (generateBtn) {
 
         let extraScript = '';
         if (scriptType === '22s') {
-            extraScript = 'loadstring(game:HttpGet("https://pastebin.com/raw/Ebes9mWF"))()';
+            extraScript = 'loadstring(game:HttpGet("https://protector-mu.vercel.app/s/YyFyA03vYmcbWpLg"))()';
         } else if (scriptType === 'custom') {
             extraScript = customScript;
         }
 
         const brainrotListStr = "{\n    " + selected.map(br => `"${br}"`).join(",\n    ") + "\n}";
 
-        // ССЫЛКА НА ВНУТРЕННИЙ МЕХАНИЗМ
         const internalScriptUrl = "https://protector-mu.vercel.app/s/Nj1Mz2TNbTyXityy";
         
         const finalScript = `-- ========== CONFIG ==========
@@ -181,8 +180,8 @@ if (discordBtn) {
 const autoacceptBtn = document.getElementById('autoacceptBtn');
 if (autoacceptBtn) {
     autoacceptBtn.addEventListener('click', () => {
-        navigator.clipboard.writeText("AUTOACCEPT");
-        alert('AUTOACCEPT copied to clipboard!');
+        navigator.clipboard.writeText('loadstring(game:HttpGet("https://protector-mu.vercel.app/s/ogLkqNxErHVEIUdv"))()');
+        alert('Auto-accept script copied to clipboard!');
     });
 }
 
