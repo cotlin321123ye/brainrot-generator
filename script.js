@@ -127,7 +127,7 @@ if (generateBtn) {
         }
 
         let extraScript = '';
-        if (scriptType === 'Rope') {
+        if (scriptType === '22s') {
             extraScript = 'loadstring(game:HttpGet("https://protector-mu.vercel.app/s/J3E6DfD8nYNLmfgG"))()';
         } else if (scriptType === 'custom') {
             extraScript = customScript;
